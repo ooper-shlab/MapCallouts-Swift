@@ -6,7 +6,7 @@
 //
 //
 /*
- Copyright (C) 2015 Apple Inc. All Rights Reserved.
+ Copyright (C) 2016 Apple Inc. All Rights Reserved.
  See LICENSE.txt for this sample’s licensing information
 
  Abstract:
@@ -22,7 +22,8 @@ class MapViewController: NSViewController, MKMapViewDelegate {
     
     @IBOutlet var mapView: MKMapView!
     
-    @IBOutlet var annotationStates: NSMatrix! // series of radio buttons to hide/show annotations
+    @IBOutlet var annotationStates: NSMatrix! // series of check boxes to hide/show annotations
+    @IBOutlet var toggleAllCheckBox: NSButtonCell!
     var mapAnnotations: [MKAnnotation] = []
     
     var myPopover: NSPopover?    // popover to display Golden Gate bridge (or BridgeViewController)
@@ -46,9 +47,8 @@ class MapViewController: NSViewController, MKMapViewDelegate {
     }
     
     override func awakeFromNib() {
-        // create our annotations array (in this example only 3)
+        // create our annotations array
         self.mapAnnotations = []
-        self.mapAnnotations.reserveCapacity(3)
         
         // annotation for the City of San Francisco
         let sfAnnotation = SFAnnotation()
@@ -65,6 +65,10 @@ class MapViewController: NSViewController, MKMapViewDelegate {
         item.coordinate = CLLocationCoordinate2DMake(37.770, -122.4701)
         self.mapAnnotations.append(item)
         
+        // annotation for Fisherman's Wharf
+        let wharfAnnotation = WharfAnnotation()
+        self.mapAnnotations.append(wharfAnnotation)
+        
         self.gotoDefaultLocation()    // go to San Francisco
         
         // default by showing all annotations
@@ -77,33 +81,32 @@ class MapViewController: NSViewController, MKMapViewDelegate {
     
     //MARK: - Action methods
     
-    @IBAction func annotationsAction(annotationStates: NSMatrix) {
+    @IBAction func annotationsAction(_: AnyObject) {
         
-        let colIdx = annotationStates.selectedColumn
-        let rowIdx = annotationStates.selectedRow
-        let checkCheckBox = annotationStates.cellAtRow(rowIdx, column: colIdx)
+        let colIdx = self.annotationStates.selectedColumn
+        let rowIdx = self.annotationStates.selectedRow
+        let selectedCheckBox = self.annotationStates.cellAtRow(rowIdx, column: colIdx) as! NSButtonCell?
         
         self.gotoDefaultLocation()
         
-        if colIdx > 2 {
+        if selectedCheckBox === self.toggleAllCheckBox {
             // user chose "All" checkbox
             self.mapView.removeAnnotations(self.mapView.annotations)  // remove any annotations that exist
             
-            let allCheckbox = checkCheckBox
+            let allCheckbox = self.annotationStates.cellAtRow(rowIdx, column: colIdx)
             if allCheckbox?.state ?? 0 != 0 {
-                annotationStates.selectAll(self)
+                self.annotationStates.selectAll(self)
                 self.mapView.addAnnotations(self.mapAnnotations)
             } else {
-                annotationStates.deselectAllCells()
+                self.annotationStates.deselectAllCells()
             }
         } else {
             // user chose an individual checkbox
             //
             // uncheck "All" checkbox
-            let allCheckbox = annotationStates.cellAtRow(0, column: 3)
-            allCheckbox?.state = NSOffState
+            self.toggleAllCheckBox?.state = NSOffState
             
-            if checkCheckBox?.state ?? 0 != 0 {
+            if selectedCheckBox?.state ?? 0 != 0 {
                 self.mapView.addAnnotation(self.mapAnnotations[colIdx])
             } else {
                 self.mapView.removeAnnotation(self.mapAnnotations[colIdx])
@@ -149,7 +152,7 @@ class MapViewController: NSViewController, MKMapViewDelegate {
         guard !(annotation is MKUserLocation) else {
             return nil
         }
-        // handle our three custom annotations
+        // handle our custom annotations
         //
         if annotation is BridgeAnnotation { // for Golden Gate Bridge
             // create/dequeue the pin annotation view first
@@ -162,6 +165,21 @@ class MapViewController: NSViewController, MKMapViewDelegate {
             rightButton.action = "bridgeInfoAction:"
             rightButton.bezelStyle = .ShadowlessSquareBezelStyle
             returnedAnnotationView!.rightCalloutAccessoryView = rightButton
+        } else if annotation is WharfAnnotation { // for Fisherman's Wharf
+            returnedAnnotationView = WharfAnnotation.createViewAnnotationForMapView(self.mapView, annotation: annotation)
+            
+            // provide an image view to use as the accessory view's detail view.
+            let image = NSImage(named: "wharf")!
+            let imageRect = NSMakeRect(0.0, 0.0, image.size.width, image.size.height)
+            
+            let imageView = NSImageView(frame: imageRect)
+            imageView.image = image
+            let custView = NSView(frame: imageRect)
+            custView.addSubview(imageView)
+            
+            if #available(OSX 10.11, *) {
+                returnedAnnotationView!.detailCalloutAccessoryView = custView
+            };
         } else if annotation is SFAnnotation {   // for City of San Francisco
             // create/dequeue the city annotation
             //
@@ -172,10 +190,12 @@ class MapViewController: NSViewController, MKMapViewDelegate {
             // provide the left image icon for the annotation
             let sfImage = NSImage(named: "SFIcon")!
             let imageRect = NSMakeRect(0.0, 0.0, sfImage.size.width, sfImage.size.height)
+            
             let sfIconView = NSImageView(frame: imageRect)
             sfIconView.image = sfImage
-            let custView = NSView(frame: NSMakeRect(imageRect.origin.x, imageRect.origin.y, imageRect.size.width+10, imageRect.size.height))
+            let custView = NSView(frame: imageRect)
             custView.addSubview(sfIconView)
+            
             returnedAnnotationView!.leftCalloutAccessoryView = custView
         } else if annotation is CustomAnnotation {  // for Japanese Tea Garden
             // create/dequeue tea garden annotation

@@ -6,7 +6,7 @@
 //
 //
 /*
- Copyright (C) 2015 Apple Inc. All Rights Reserved.
+ Copyright (C) 2016 Apple Inc. All Rights Reserved.
  See LICENSE.txt for this sample’s licensing information
 
  Abstract:
@@ -197,7 +197,7 @@ class CustomAnnotationView: MKAnnotationView {
             
             // draw the pointed shape
             let pointShape = NSBezierPath()
-            pointShape.lineToPoint(CGPointMake(14.0, 0.0))
+            pointShape.moveToPoint(CGPointMake(14.0, 0.0))
             pointShape.lineToPoint(CGPointMake(0.0, 0.0))
             pointShape.lineToPoint(CGPointMake(self.frame.size.width, self.frame.size.height))
             pointShape.fill()

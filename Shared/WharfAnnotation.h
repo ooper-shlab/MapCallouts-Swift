@@ -3,12 +3,12 @@
  See LICENSE.txt for this sample’s licensing information
  
  Abstract:
- The custom MKAnnotation object representing the Golden Gate Bridge.
+ The custom MKAnnotation object representing Fisherman's Wharf.
  */
 
 #import <MapKit/MapKit.h>
 
-@interface BridgeAnnotation : NSObject <MKAnnotation>
+@interface WharfAnnotation : NSObject <MKAnnotation>
 
 + (MKAnnotationView *)createViewAnnotationForMapView:(MKMapView *)mapView annotation:(id <MKAnnotation>)annotation;
 

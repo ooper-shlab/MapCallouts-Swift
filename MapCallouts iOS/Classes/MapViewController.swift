@@ -6,9 +6,11 @@
 //
 //
 /*
- Copyright (C) 2015 Apple Inc. All Rights Reserved.
+ Copyright (C) 2016 Apple Inc. All Rights Reserved.
  See LICENSE.txt for this sample’s licensing information
 
+ Abstract:
+ The primary view controller containing the MKMapView, adding and removing both MKPinAnnotationViews through its toolbar.
  */
 
 import UIKit
@@ -52,7 +54,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentat
         
         // create out annotations array (in this example only 3)
         self.mapAnnotations = []
-        self.mapAnnotations.reserveCapacity(3)
         
         // annotation for the City of San Francisco
         let sfAnnotation = SFAnnotation()
@@ -61,6 +62,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentat
         // annotation for Golden Gate Bridge
         let bridgeAnnotation = BridgeAnnotation()
         self.mapAnnotations.append(bridgeAnnotation)
+        
+        // annotation for Fisherman's Wharf
+        let wharfAnnotation = WharfAnnotation()
+        self.mapAnnotations.append(wharfAnnotation)
         
         // annotation for Japanese Tea Garden
         let item = CustomAnnotation()
@@ -99,6 +104,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentat
         self.gotoByAnnotationClass(BridgeAnnotation.self)
     }
     
+    @IBAction func wharfAction(_: AnyObject) {
+        // user tapped "Wharf" button in the bottom toolbar
+        self.gotoByAnnotationClass(WharfAnnotation.self)
+    }
+    
     @IBAction func teaGardenAction(_: AnyObject) {
         // user tapped "Tea Gardon" button in the bottom toolbar
         self.gotoByAnnotationClass(CustomAnnotation.self)
@@ -110,7 +120,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentat
         // remove any annotations that exist
         self.mapView.removeAnnotations(self.mapView.annotations)
         
-        // add all 3 annotations
+        // add all the custom annotations
         self.mapView.addAnnotations(self.mapAnnotations)
         
         self.gotoDefaultLocation()
@@ -184,7 +194,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentat
         
         // in case it's the user location, we already have an annotation, so just return nil
         if !(annotation is MKUserLocation) {
-            // handle our three custom annotations
+            // handle our custom annotations
             //
             if annotation is BridgeAnnotation { // for Golden Gate Bridge
                 returnedAnnotationView = BridgeAnnotation.createViewAnnotationForMapView(self.mapView, annotation: annotation)
@@ -199,6 +209,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentat
                 let rightButton = UIButton(type: .DetailDisclosure)
                 rightButton.addTarget(self, action: "buttonAction:", forControlEvents: .TouchUpInside)
                 returnedAnnotationView!.rightCalloutAccessoryView = rightButton
+            } else if annotation is WharfAnnotation { // for Fisherman's Wharf
+                returnedAnnotationView = WharfAnnotation.createViewAnnotationForMapView(self.mapView,  annotation: annotation)
+                
+                // provide an image view to use as the accessory view's detail view.
+                let imageView = UIImageView(image: UIImage(named: "wharf"))
+                returnedAnnotationView!.detailCalloutAccessoryView = imageView;
             } else if annotation is SFAnnotation {   // for City of San Francisco
                 returnedAnnotationView = SFAnnotation.createViewAnnotationForMapView(self.mapView, annotation: annotation)
                 

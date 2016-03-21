@@ -16,14 +16,15 @@
 		53B6FD9218A9712800B90785 /* PopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53B6FD9018A9712800B90785 /* PopoverView.xib */; };
 		53DA82BF19B78FE500714B7E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DA82BE19B78FE500714B7E /* MapKit.framework */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		D7D6A6311BEE685E0062D877 /* BridgeAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D6A62E1BEE685E0062D877 /* BridgeAnnotation.swift */; };
-		D7D6A6321BEE685E0062D877 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D6A62F1BEE685E0062D877 /* CustomAnnotation.swift */; };
-		D7D6A6331BEE685E0062D877 /* SFAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D6A6301BEE685E0062D877 /* SFAnnotation.swift */; };
-		D7D6A6351BEE68770062D877 /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D6A6341BEE68770062D877 /* CustomAnnotationView.swift */; };
-		D7D6A6371BEE6C890062D877 /* BridgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D6A6361BEE6C890062D877 /* BridgeViewController.swift */; };
-		D7D6A6391BEE6D7F0062D877 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D6A6381BEE6D7F0062D877 /* MapViewController.swift */; };
-		D7D6A63B1BEECED00062D877 /* MyWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D6A63A1BEECED00062D877 /* MyWindowController.swift */; };
-		D7D6A63D1BEED0CA0062D877 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D6A63C1BEED0CA0062D877 /* AppDelegate.swift */; };
+		D75D299D1CA049BF00E3FDDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D29991CA049BF00E3FDDF /* AppDelegate.swift */; };
+		D75D299E1CA049BF00E3FDDF /* BridgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D299A1CA049BF00E3FDDF /* BridgeViewController.swift */; };
+		D75D299F1CA049BF00E3FDDF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D299B1CA049BF00E3FDDF /* MapViewController.swift */; };
+		D75D29A01CA049BF00E3FDDF /* MyWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D299C1CA049BF00E3FDDF /* MyWindowController.swift */; };
+		D75D29A51CA049DC00E3FDDF /* BridgeAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D29A11CA049DC00E3FDDF /* BridgeAnnotation.swift */; };
+		D75D29A61CA049DC00E3FDDF /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D29A21CA049DC00E3FDDF /* CustomAnnotation.swift */; };
+		D75D29A71CA049DC00E3FDDF /* SFAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D29A31CA049DC00E3FDDF /* SFAnnotation.swift */; };
+		D75D29A81CA049DC00E3FDDF /* WharfAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D29A41CA049DC00E3FDDF /* WharfAnnotation.swift */; };
+		D75D29B01CA0540600E3FDDF /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D29A91CA049F600E3FDDF /* CustomAnnotationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,16 +42,17 @@
 		53DA82BE19B78FE500714B7E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* MapCallouts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapCallouts.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D7D6A62E1BEE685E0062D877 /* BridgeAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BridgeAnnotation.swift; path = ../Shared/BridgeAnnotation.swift; sourceTree = "<group>"; };
-		D7D6A62F1BEE685E0062D877 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomAnnotation.swift; path = ../Shared/CustomAnnotation.swift; sourceTree = "<group>"; };
-		D7D6A6301BEE685E0062D877 /* SFAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SFAnnotation.swift; path = ../Shared/SFAnnotation.swift; sourceTree = "<group>"; };
-		D7D6A6341BEE68770062D877 /* CustomAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomAnnotationView.swift; path = ../Shared/CustomAnnotationView.swift; sourceTree = "<group>"; };
-		D7D6A6361BEE6C890062D877 /* BridgeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BridgeViewController.swift; path = Classes/BridgeViewController.swift; sourceTree = "<group>"; };
-		D7D6A6381BEE6D7F0062D877 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		D7D6A63A1BEECED00062D877 /* MyWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyWindowController.swift; sourceTree = "<group>"; };
-		D7D6A63C1BEED0CA0062D877 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D7D6A63E1BEED7F60062D877 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.txt; path = ../LICENSE.txt; sourceTree = "<group>"; };
-		D7D6A63F1BEED7F60062D877 /* README2.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README2.md; path = ../README2.md; sourceTree = "<group>"; };
+		D75D29991CA049BF00E3FDDF /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Classes/AppDelegate.swift; sourceTree = "<group>"; };
+		D75D299A1CA049BF00E3FDDF /* BridgeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BridgeViewController.swift; path = Classes/BridgeViewController.swift; sourceTree = "<group>"; };
+		D75D299B1CA049BF00E3FDDF /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = Classes/MapViewController.swift; sourceTree = "<group>"; };
+		D75D299C1CA049BF00E3FDDF /* MyWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyWindowController.swift; path = Classes/MyWindowController.swift; sourceTree = "<group>"; };
+		D75D29A11CA049DC00E3FDDF /* BridgeAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BridgeAnnotation.swift; path = ../Shared/BridgeAnnotation.swift; sourceTree = "<group>"; };
+		D75D29A21CA049DC00E3FDDF /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomAnnotation.swift; path = ../Shared/CustomAnnotation.swift; sourceTree = "<group>"; };
+		D75D29A31CA049DC00E3FDDF /* SFAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SFAnnotation.swift; path = ../Shared/SFAnnotation.swift; sourceTree = "<group>"; };
+		D75D29A41CA049DC00E3FDDF /* WharfAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WharfAnnotation.swift; path = ../Shared/WharfAnnotation.swift; sourceTree = "<group>"; };
+		D75D29A91CA049F600E3FDDF /* CustomAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomAnnotationView.swift; path = ../Shared/CustomAnnotationView.swift; sourceTree = "<group>"; };
+		D75D29AB1CA0517D00E3FDDF /* README2.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README2.md; path = ../README2.md; sourceTree = "<group>"; };
+		D75D29AC1CA0517D00E3FDDF /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE.txt; path = ../LICENSE.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,9 +80,9 @@
 		29B97314FDCFA39411CA2CEA /* TrackIt */ = {
 			isa = PBXGroup;
 			children = (
-				D7D6A63E1BEED7F60062D877 /* LICENSE.txt */,
+				D75D29AC1CA0517D00E3FDDF /* LICENSE.txt */,
 				5347C6D01BC850B2007101C0 /* ReadMe.md */,
-				D7D6A63F1BEED7F60062D877 /* README2.md */,
+				D75D29AB1CA0517D00E3FDDF /* README2.md */,
 				29B97315FDCFA39411CA2CEA /* Classes */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -92,10 +94,10 @@
 		29B97315FDCFA39411CA2CEA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				D7D6A63C1BEED0CA0062D877 /* AppDelegate.swift */,
-				D7D6A63A1BEECED00062D877 /* MyWindowController.swift */,
-				D7D6A6381BEE6D7F0062D877 /* MapViewController.swift */,
-				D7D6A6361BEE6C890062D877 /* BridgeViewController.swift */,
+				D75D29991CA049BF00E3FDDF /* AppDelegate.swift */,
+				D75D299C1CA049BF00E3FDDF /* MyWindowController.swift */,
+				D75D299B1CA049BF00E3FDDF /* MapViewController.swift */,
+				D75D299A1CA049BF00E3FDDF /* BridgeViewController.swift */,
 				531B1AC018A59CE800D43367 /* Annotations */,
 				531B1ACE18A5A0F600D43367 /* Custom View */,
 			);
@@ -131,9 +133,10 @@
 		531B1AC018A59CE800D43367 /* Annotations */ = {
 			isa = PBXGroup;
 			children = (
-				D7D6A62E1BEE685E0062D877 /* BridgeAnnotation.swift */,
-				D7D6A62F1BEE685E0062D877 /* CustomAnnotation.swift */,
-				D7D6A6301BEE685E0062D877 /* SFAnnotation.swift */,
+				D75D29A11CA049DC00E3FDDF /* BridgeAnnotation.swift */,
+				D75D29A21CA049DC00E3FDDF /* CustomAnnotation.swift */,
+				D75D29A31CA049DC00E3FDDF /* SFAnnotation.swift */,
+				D75D29A41CA049DC00E3FDDF /* WharfAnnotation.swift */,
 			);
 			name = Annotations;
 			sourceTree = "<group>";
@@ -141,7 +144,7 @@
 		531B1ACE18A5A0F600D43367 /* Custom View */ = {
 			isa = PBXGroup;
 			children = (
-				D7D6A6341BEE68770062D877 /* CustomAnnotationView.swift */,
+				D75D29A91CA049F600E3FDDF /* CustomAnnotationView.swift */,
 			);
 			name = "Custom View";
 			sourceTree = "<group>";
@@ -173,7 +176,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0700;
 				TargetAttributes = {
 					8D1107260486CEB800E47090 = {
@@ -230,14 +233,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7D6A6331BEE685E0062D877 /* SFAnnotation.swift in Sources */,
-				D7D6A6391BEE6D7F0062D877 /* MapViewController.swift in Sources */,
-				D7D6A6321BEE685E0062D877 /* CustomAnnotation.swift in Sources */,
-				D7D6A6351BEE68770062D877 /* CustomAnnotationView.swift in Sources */,
-				D7D6A63B1BEECED00062D877 /* MyWindowController.swift in Sources */,
-				D7D6A6311BEE685E0062D877 /* BridgeAnnotation.swift in Sources */,
-				D7D6A63D1BEED0CA0062D877 /* AppDelegate.swift in Sources */,
-				D7D6A6371BEE6C890062D877 /* BridgeViewController.swift in Sources */,
+				D75D299D1CA049BF00E3FDDF /* AppDelegate.swift in Sources */,
+				D75D299E1CA049BF00E3FDDF /* BridgeViewController.swift in Sources */,
+				D75D29A51CA049DC00E3FDDF /* BridgeAnnotation.swift in Sources */,
+				D75D29A81CA049DC00E3FDDF /* WharfAnnotation.swift in Sources */,
+				D75D29A71CA049DC00E3FDDF /* SFAnnotation.swift in Sources */,
+				D75D29B01CA0540600E3FDDF /* CustomAnnotationView.swift in Sources */,
+				D75D29A61CA049DC00E3FDDF /* CustomAnnotation.swift in Sources */,
+				D75D299F1CA049BF00E3FDDF /* MapViewController.swift in Sources */,
+				D75D29A01CA049BF00E3FDDF /* MyWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
