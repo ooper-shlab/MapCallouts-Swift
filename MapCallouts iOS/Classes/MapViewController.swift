@@ -145,7 +145,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentat
         
         let presentedViewController = controller.presentedViewController
         presentedViewController.navigationItem.rightBarButtonItem =
-            UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "doneAction:")
+            UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(MapViewController.doneAction(_:)))
         
         return navController
     }
@@ -207,7 +207,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentat
                 // by using "calloutAccessoryControlTapped", it's a convenient way to find out which annotation was tapped
                 //
                 let rightButton = UIButton(type: .DetailDisclosure)
-                rightButton.addTarget(self, action: "buttonAction:", forControlEvents: .TouchUpInside)
+                rightButton.addTarget(self, action: #selector(MapViewController.buttonAction(_:)), forControlEvents: .TouchUpInside)
                 returnedAnnotationView!.rightCalloutAccessoryView = rightButton
             } else if annotation is WharfAnnotation { // for Fisherman's Wharf
                 returnedAnnotationView = WharfAnnotation.createViewAnnotationForMapView(self.mapView,  annotation: annotation)

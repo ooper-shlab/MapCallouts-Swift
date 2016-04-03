@@ -162,7 +162,7 @@ class MapViewController: NSViewController, MKMapViewDelegate {
             let rightButton = NSButton(frame: NSMakeRect(0.0, 0.0, 100.0, 80.0))
             rightButton.title = "Info"
             rightButton.target = self
-            rightButton.action = "bridgeInfoAction:"
+            rightButton.action = #selector(MapViewController.bridgeInfoAction(_:))
             rightButton.bezelStyle = .ShadowlessSquareBezelStyle
             returnedAnnotationView!.rightCalloutAccessoryView = rightButton
         } else if annotation is WharfAnnotation { // for Fisherman's Wharf
