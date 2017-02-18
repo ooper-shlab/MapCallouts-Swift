@@ -13,9 +13,9 @@ You should not contact to Apple or SHLab(jp) about any faults caused by my trans
 
 ## Build Requirements
 
-Xcode 7.3
-iOS 9.3 SDK or later
-OS X 10.11 SDK or later
+Xcode 8.2.1
+iOS 10 SDK or later
+OS X 10.12 SDK or later (NOT tested)
 
 
 ## Runtime Requirements

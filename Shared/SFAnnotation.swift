@@ -39,17 +39,17 @@ class SFAnnotation: NSObject, MKAnnotation {
         return "Founded: June 29, 1776"
     }
     
-    class func createViewAnnotationForMapView(mapview: MKMapView, annotation: MKAnnotation) -> MKAnnotationView {
+    class func createViewAnnotationForMapView(_ mapview: MKMapView, annotation: MKAnnotation) -> MKAnnotationView {
         var returnedAnnotationView =
-        mapview.dequeueReusableAnnotationViewWithIdentifier(String(SFAnnotation.self))
+        mapview.dequeueReusableAnnotationView(withIdentifier: String(describing: SFAnnotation.self))
         if returnedAnnotationView == nil {
             returnedAnnotationView =
-                MKAnnotationView(annotation: annotation, reuseIdentifier: String(SFAnnotation.self))
+                MKAnnotationView(annotation: annotation, reuseIdentifier: String(describing: SFAnnotation.self))
             
             returnedAnnotationView!.canShowCallout = true
             
             // offset the flag annotation so that the flag pole rests on the map coordinate
-            returnedAnnotationView!.centerOffset = CGPointMake(returnedAnnotationView!.centerOffset.x + (returnedAnnotationView!.image?.size.width ?? 0)/2, returnedAnnotationView!.centerOffset.y - (returnedAnnotationView!.image?.size.height ?? 0)/2)
+            returnedAnnotationView!.centerOffset = CGPoint(x: returnedAnnotationView!.centerOffset.x + (returnedAnnotationView!.image?.size.width ?? 0)/2, y: returnedAnnotationView!.centerOffset.y - (returnedAnnotationView!.image?.size.height ?? 0)/2)
         } else {
             returnedAnnotationView!.annotation = annotation
         }

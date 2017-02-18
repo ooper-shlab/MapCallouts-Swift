@@ -85,7 +85,7 @@ class MapViewController: NSViewController, MKMapViewDelegate {
         
         let colIdx = self.annotationStates.selectedColumn
         let rowIdx = self.annotationStates.selectedRow
-        let selectedCheckBox = self.annotationStates.cellAtRow(rowIdx, column: colIdx) as! NSButtonCell?
+        let selectedCheckBox = self.annotationStates.cell(atRow: rowIdx, column: colIdx) as! NSButtonCell?
         
         self.gotoDefaultLocation()
         
@@ -93,7 +93,7 @@ class MapViewController: NSViewController, MKMapViewDelegate {
             // user chose "All" checkbox
             self.mapView.removeAnnotations(self.mapView.annotations)  // remove any annotations that exist
             
-            let allCheckbox = self.annotationStates.cellAtRow(rowIdx, column: colIdx)
+            let allCheckbox = self.annotationStates.cell(atRow: rowIdx, column: colIdx)
             if allCheckbox?.state ?? 0 != 0 {
                 self.annotationStates.selectAll(self)
                 self.mapView.addAnnotations(self.mapAnnotations)
@@ -114,15 +114,15 @@ class MapViewController: NSViewController, MKMapViewDelegate {
         }
     }
     
-    @IBAction func bridgeInfoAction(targetButton: NSButton) {
+    @IBAction func bridgeInfoAction(_ targetButton: NSButton) {
         // user clicked the Info button inside the BridgeAnnotation
         //
         
         // configure the preferred position of the popover
-        let prefEdge = NSRectEdge.MaxY
+        let prefEdge = NSRectEdge.maxY
         
         self.createPopover()
-        self.myPopover?.showRelativeToRect(targetButton.bounds, ofView: targetButton, preferredEdge: prefEdge)
+        self.myPopover?.show(relativeTo: targetButton.bounds, of: targetButton, preferredEdge: prefEdge)
     }
     
     private func createPopover() {
@@ -138,14 +138,14 @@ class MapViewController: NSViewController, MKMapViewDelegate {
             // element outside the popover.  Note that interacting with menus or panels that
             // become key only when needed will not cause a transient popover to close.
             //
-            self.myPopover!.behavior = .Transient
+            self.myPopover!.behavior = .transient
         }
     }
     
     
     //MARK: - MKMapViewDelegate
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         var returnedAnnotationView: MKAnnotationView? = nil
         
         // in case it's the user location, we already have an annotation, so just return nil
@@ -163,7 +163,7 @@ class MapViewController: NSViewController, MKMapViewDelegate {
             rightButton.title = "Info"
             rightButton.target = self
             rightButton.action = #selector(MapViewController.bridgeInfoAction(_:))
-            rightButton.bezelStyle = .ShadowlessSquareBezelStyle
+            rightButton.bezelStyle = .shadowlessSquare
             returnedAnnotationView!.rightCalloutAccessoryView = rightButton
         } else if annotation is WharfAnnotation { // for Fisherman's Wharf
             returnedAnnotationView = WharfAnnotation.createViewAnnotationForMapView(self.mapView, annotation: annotation)
@@ -179,7 +179,7 @@ class MapViewController: NSViewController, MKMapViewDelegate {
             
             if #available(OSX 10.11, *) {
                 returnedAnnotationView!.detailCalloutAccessoryView = custView
-            };
+            }
         } else if annotation is SFAnnotation {   // for City of San Francisco
             // create/dequeue the city annotation
             //

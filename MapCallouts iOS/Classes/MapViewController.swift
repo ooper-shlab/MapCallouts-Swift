@@ -36,12 +36,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentat
         self.mapView.setRegion(newRegion, animated: true)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // restore the nav bar to translucent
-        self.navigationController!.navigationBar.barStyle = UIBarStyle.Black
-        self.navigationController!.navigationBar.translucent = true
+        self.navigationController!.navigationBar.barStyle = UIBarStyle.black
+        self.navigationController!.navigationBar.isTranslucent = true
     }
     
     override func viewDidLoad() {
@@ -81,10 +81,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentat
     
     //MARK: - Button Actions
     
-    private func gotoByAnnotationClass(annotationClass: AnyClass) {
+    private func gotoByAnnotationClass(_ annotationClass: AnyClass) {
         // user tapped "City" button in the bottom toolbar
         for annotation in self.mapAnnotations {
-            if annotation.isKindOfClass(annotationClass) {
+            if annotation.isKind(of: annotationClass) {
                 // remove any annotations that exist
                 self.mapView.removeAnnotations(self.mapView.annotations)
                 // add just the city annotation
@@ -128,7 +128,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentat
     
     // dismissing the bridge detail view controller
     @objc func doneAction(_: AnyObject) {
-        self.dismissViewControllerAnimated(true) {
+        self.dismiss(animated: true) {
             //.. done
         }
     }
@@ -137,39 +137,39 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentat
     // present/wrap the detail view controller in a navigation controller,
     // If this method is not implemented, or returns nil, then the originally presented view controller is used
     //
-    func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+    func presentationController(_ controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
         let navController = UINavigationController(rootViewController: controller.presentedViewController)
         
         // for the detail view controller we want a black style nav bar
-        navController.navigationBar.barStyle = UIBarStyle.Black
+        navController.navigationBar.barStyle = UIBarStyle.black
         
         let presentedViewController = controller.presentedViewController
         presentedViewController.navigationItem.rightBarButtonItem =
-            UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(MapViewController.doneAction(_:)))
+            UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(MapViewController.doneAction(_:)))
         
         return navController
     }
     
-    @objc func buttonAction(button: UIButton) {
+    @objc func buttonAction(_ button: UIButton) {
         NSLog("clicked Golden Gate Bridge annotation")
         
-        let detailViewController = self.storyboard!.instantiateViewControllerWithIdentifier("DetailViewController")
-        detailViewController.edgesForExtendedLayout = .None
-        detailViewController.modalPresentationStyle = .Popover
+        let detailViewController = self.storyboard!.instantiateViewController(withIdentifier: "DetailViewController")
+        detailViewController.edgesForExtendedLayout = UIRectEdge()
+        detailViewController.modalPresentationStyle = .popover
         let presentationController = detailViewController.popoverPresentationController
         
         // display popover from the UIButton (sender) as the anchor
         presentationController?.sourceRect = button.frame
         presentationController?.sourceView = button.superview
         
-        presentationController?.permittedArrowDirections = .Any
+        presentationController?.permittedArrowDirections = .any
         
         // not required, but useful for presenting "contentVC" in a compact screen so that it
         // can be dismissed as a full screen view controller)
         //
         presentationController?.delegate = self
         
-        self.presentViewController(detailViewController, animated: true) {
+        self.present(detailViewController, animated: true) {
             //.. done
         }
     }
@@ -179,7 +179,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentat
     
     // user tapped the disclosure button in the bridge callout
     //
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         // here we illustrate how to detect which annotation type was clicked on for its callout
         let annotation = view.annotation!
         if annotation is BridgeAnnotation {
@@ -189,7 +189,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentat
         }
     }
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         var returnedAnnotationView: MKAnnotationView? = nil
         
         // in case it's the user location, we already have an annotation, so just return nil
@@ -206,8 +206,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIPopoverPresentat
                 //
                 // by using "calloutAccessoryControlTapped", it's a convenient way to find out which annotation was tapped
                 //
-                let rightButton = UIButton(type: .DetailDisclosure)
-                rightButton.addTarget(self, action: #selector(MapViewController.buttonAction(_:)), forControlEvents: .TouchUpInside)
+                let rightButton = UIButton(type: .detailDisclosure)
+                rightButton.addTarget(self, action: #selector(MapViewController.buttonAction(_:)), for: .touchUpInside)
                 returnedAnnotationView!.rightCalloutAccessoryView = rightButton
             } else if annotation is WharfAnnotation { // for Fisherman's Wharf
                 returnedAnnotationView = WharfAnnotation.createViewAnnotationForMapView(self.mapView,  annotation: annotation)

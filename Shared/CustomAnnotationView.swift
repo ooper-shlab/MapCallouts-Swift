@@ -38,11 +38,11 @@ class CustomAnnotationView: MKAnnotationView {
     
     #if os(iOS)
     // iOS Label
-    func makeiOSLabel(placeLabel: String?) -> UILabel {
+    func makeiOSLabel(_ placeLabel: String?) -> UILabel {
         // add the annotation's label
-        let annotationLabel = UILabel(frame: CGRectZero)
-        annotationLabel.font = UIFont.systemFontOfSize(9.0)
-        annotationLabel.textColor = UIColor.whiteColor()
+        let annotationLabel = UILabel(frame: CGRect.zero)
+        annotationLabel.font = UIFont.systemFont(ofSize: 9.0)
+        annotationLabel.textColor = UIColor.white
         annotationLabel.text = placeLabel
         annotationLabel.sizeToFit()   // get the right vertical size
         
@@ -50,16 +50,16 @@ class CustomAnnotationView: MKAnnotationView {
         let optimumWidth = annotationLabel.frame.size.width + kRightMargin + kLeftMargin
         var frame = self.frame
         if optimumWidth < kViewWidth {
-            frame.size = CGSizeMake(kViewWidth, kViewLength)
+            frame.size = CGSize(width: kViewWidth, height: kViewLength)
         } else if optimumWidth > kMaxViewWidth {
-            frame.size = CGSizeMake(kMaxViewWidth, kViewLength)
+            frame.size = CGSize(width: kMaxViewWidth, height: kViewLength)
         } else {
-            frame.size = CGSizeMake(optimumWidth, kViewLength)
+            frame.size = CGSize(width: optimumWidth, height: kViewLength)
         }
         self.frame = frame
         
-        annotationLabel.lineBreakMode = .ByTruncatingTail
-        annotationLabel.backgroundColor = UIColor.clearColor()
+        annotationLabel.lineBreakMode = .byTruncatingTail
+        annotationLabel.backgroundColor = UIColor.clear
         var newFrame = annotationLabel.frame
         newFrame.origin.x = kLeftMargin
         newFrame.origin.y = kTopMargin
@@ -70,12 +70,12 @@ class CustomAnnotationView: MKAnnotationView {
     }
     #else
     // OS X label
-    func makeOSXLabel(placeLabel: String) -> NSTextField {
+    func makeOSXLabel(_ placeLabel: String) -> NSTextField {
         let annotationLabel = NSTextField(frame: NSZeroRect)
-        annotationLabel.bordered = false
-        annotationLabel.editable = false
-        annotationLabel.font = NSFont.systemFontOfSize(10.0)
-        annotationLabel.textColor = NSColor.whiteColor()
+        annotationLabel.isBordered = false
+        annotationLabel.isEditable = false
+        annotationLabel.font = NSFont.systemFont(ofSize: 10.0)
+        annotationLabel.textColor = NSColor.white
         annotationLabel.stringValue = placeLabel
         annotationLabel.sizeToFit()   // get the right vertical size
         
@@ -83,15 +83,15 @@ class CustomAnnotationView: MKAnnotationView {
         let optimumWidth = annotationLabel.frame.size.width + kRightMargin + kLeftMargin
         var frame = self.frame
         if optimumWidth < kViewWidth {
-            frame.size = CGSizeMake(kViewWidth, kViewLength)
+            frame.size = CGSize(width: kViewWidth, height: kViewLength)
         } else if optimumWidth > kMaxViewWidth {
-            frame.size = CGSizeMake(kMaxViewWidth, kViewLength)
+            frame.size = CGSize(width: kMaxViewWidth, height: kViewLength)
         } else {
-            frame.size = CGSizeMake(optimumWidth, kViewLength)
+            frame.size = CGSize(width: optimumWidth, height: kViewLength)
         }
         self.frame = frame
         
-        annotationLabel.backgroundColor = NSColor.clearColor()
+        annotationLabel.backgroundColor = NSColor.clear
         var newFrame = annotationLabel.frame
         newFrame.origin.x = kLeftMargin
         newFrame.origin.y = kTopMargin
@@ -109,12 +109,12 @@ class CustomAnnotationView: MKAnnotationView {
         let mapItem = self.annotation as! CustomAnnotation
         
         // offset the annotation so it won't obscure the actual lat/long location
-        self.centerOffset = CGPointMake(50.0, 50.0)
+        self.centerOffset = CGPoint(x: 50.0, y: 50.0)
         
         #if os(iOS)
             // iOS equivalent
             //
-            self.backgroundColor = UIColor.clearColor()
+            self.backgroundColor = UIColor.clear
             
             let annotationLabel = self.makeiOSLabel(mapItem.place)
             self.addSubview(annotationLabel)
@@ -122,12 +122,12 @@ class CustomAnnotationView: MKAnnotationView {
             // add the annotation's image
             // the annotation image snaps to the width and height of this view
             let annotationImage = UIImageView(image: UIImage(named: mapItem.imageName!))
-            annotationImage.contentMode = UIViewContentMode.ScaleAspectFit
+            annotationImage.contentMode = UIViewContentMode.scaleAspectFit
             annotationImage.frame =
-                CGRectMake(kLeftMargin,
-                    annotationLabel.frame.origin.y + annotationLabel.frame.size.height + kTopMargin,
-                    self.frame.size.width - kRightMargin - kLeftMargin,
-                    self.frame.size.height - annotationLabel.frame.size.height - kTopMargin*2 - kBottomMargin)
+                CGRect(x: kLeftMargin,
+                    y: annotationLabel.frame.origin.y + annotationLabel.frame.size.height + kTopMargin,
+                    width: self.frame.size.width - kRightMargin - kLeftMargin,
+                    height: self.frame.size.height - annotationLabel.frame.size.height - kTopMargin*2 - kBottomMargin)
             self.addSubview(annotationImage)
             
         #else
@@ -153,9 +153,9 @@ class CustomAnnotationView: MKAnnotationView {
         
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -163,25 +163,25 @@ class CustomAnnotationView: MKAnnotationView {
     
     #if os(iOS)    // for iOS
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         // used to draw the rounded background box and pointer
         if let _ = self.annotation as? CustomAnnotation {
             
-            UIColor.darkGrayColor().setFill()
+            UIColor.darkGray.setFill()
             
             // draw the pointed shape
             let pointShape = UIBezierPath()
-            pointShape.moveToPoint(CGPointMake(14.0, 0.0))
-            pointShape.addLineToPoint(CGPointMake(0.0, 0.0))
-            pointShape.addLineToPoint(CGPointMake(self.frame.size.width, self.frame.size.height))
+            pointShape.move(to: CGPoint(x: 14.0, y: 0.0))
+            pointShape.addLine(to: CGPoint(x: 0.0, y: 0.0))
+            pointShape.addLine(to: CGPoint(x: self.frame.size.width, y: self.frame.size.height))
             pointShape.fill()
             
             // draw the rounded box
             let roundedRect = UIBezierPath(roundedRect:
-                CGRectMake(kRoundBoxLeft,
-                    0.0,
-                    self.frame.size.width - kRoundBoxLeft,
-                    self.frame.size.height),
+                CGRect(x: kRoundBoxLeft,
+                    y: 0.0,
+                    width: self.frame.size.width - kRoundBoxLeft,
+                    height: self.frame.size.height),
                 cornerRadius: 3.0)
             roundedRect.lineWidth = 2.0
             roundedRect.fill()
@@ -190,24 +190,24 @@ class CustomAnnotationView: MKAnnotationView {
     
     #else   // for OS X
     
-    override func drawRect(dirtyRect: NSRect) {
+    override func draw(_ dirtyRect: NSRect) {
         // used to draw the rounded background box and pointer
         if let _ = self.annotation as? CustomAnnotation {
-            NSColor.darkGrayColor().setFill()
+            NSColor.darkGray.setFill()
             
             // draw the pointed shape
             let pointShape = NSBezierPath()
-            pointShape.moveToPoint(CGPointMake(14.0, 0.0))
-            pointShape.lineToPoint(CGPointMake(0.0, 0.0))
-            pointShape.lineToPoint(CGPointMake(self.frame.size.width, self.frame.size.height))
+            pointShape.move(to: CGPoint(x: 14.0, y: 0.0))
+            pointShape.line(to: CGPoint(x: 0.0, y: 0.0))
+            pointShape.line(to: CGPoint(x: self.frame.size.width, y: self.frame.size.height))
             pointShape.fill()
             
             // draw the rounded box
             let roundedRect = NSBezierPath(roundedRect:
-                CGRectMake(kRoundBoxLeft,
-                    0.0,
-                    self.frame.size.width - kRoundBoxLeft,
-                    self.frame.size.height),
+                CGRect(x: kRoundBoxLeft,
+                    y: 0.0,
+                    width: self.frame.size.width - kRoundBoxLeft,
+                    height: self.frame.size.height),
                 xRadius: 3.0,
                 yRadius: 3.0)
             roundedRect.lineWidth = 2.0

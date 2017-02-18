@@ -25,12 +25,12 @@ class CustomAnnotation: NSObject, MKAnnotation {
     
     var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
     
-    class func createViewAnnotationForMapView(mapView: MKMapView, annotation: MKAnnotation) -> MKAnnotationView {
+    class func createViewAnnotationForMapView(_ mapView: MKMapView, annotation: MKAnnotation) -> MKAnnotationView {
         var returnedAnnotationView =
-        mapView.dequeueReusableAnnotationViewWithIdentifier(String(CustomAnnotation.self)) as? CustomAnnotationView
+        mapView.dequeueReusableAnnotationView(withIdentifier: String(describing: CustomAnnotation.self)) as? CustomAnnotationView
         if returnedAnnotationView == nil {
             returnedAnnotationView =
-                CustomAnnotationView(annotation: annotation, reuseIdentifier: String(CustomAnnotation.self))
+                CustomAnnotationView(annotation: annotation, reuseIdentifier: String(describing: CustomAnnotation.self))
         }
         
         return returnedAnnotationView!

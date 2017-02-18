@@ -25,7 +25,7 @@ class DetailViewController: UIViewController {
         let imageView = self.view as! UIImageView
         
         // this will determine the appropriate size of our popover
-        self.preferredContentSize = CGSizeMake(imageView.image!.size.width, imageView.image!.size.height)
+        self.preferredContentSize = CGSize(width: imageView.image!.size.width, height: imageView.image!.size.height)
         self.title = "Golden Gate"
     }
     

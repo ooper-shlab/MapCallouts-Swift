@@ -34,12 +34,12 @@ class MyWindowController: NSWindowController {
         let viewControllerView = self.mainVC.view
         let viewsDictionary = ["viewControllerView": viewControllerView]
         self.window?.contentView?.addConstraints(NSLayoutConstraint
-            .constraintsWithVisualFormat("V:|[viewControllerView]|",
+            .constraints(withVisualFormat: "V:|[viewControllerView]|",
                 options: [],
                 metrics: nil,
                 views: viewsDictionary))
         self.window?.contentView?.addConstraints(NSLayoutConstraint
-            .constraintsWithVisualFormat("H:|[viewControllerView]|",
+            .constraints(withVisualFormat: "H:|[viewControllerView]|",
                 options: [],
                 metrics: nil,
                 views: viewsDictionary))

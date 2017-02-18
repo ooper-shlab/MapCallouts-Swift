@@ -30,10 +30,10 @@ class WharfAnnotation: NSObject, MKAnnotation {
         return "Fisherman's Wharf"
     }
     
-    class func createViewAnnotationForMapView(mapView: MKMapView, annotation: MKAnnotation) -> MKAnnotationView {
+    class func createViewAnnotationForMapView(_ mapView: MKMapView, annotation: MKAnnotation) -> MKAnnotationView {
         // try to dequeue an existing pin view first
         var returnedAnnotationView =
-        mapView.dequeueReusableAnnotationViewWithIdentifier(NSStringFromClass(WharfAnnotation.self))
+        mapView.dequeueReusableAnnotationView(withIdentifier: NSStringFromClass(WharfAnnotation.self))
         if returnedAnnotationView == nil {
             returnedAnnotationView =
                 MKPinAnnotationView(annotation: annotation,
@@ -42,10 +42,10 @@ class WharfAnnotation: NSObject, MKAnnotation {
             (returnedAnnotationView as! MKPinAnnotationView).canShowCallout = true
             
                 #if os(iOS)
-                    (returnedAnnotationView as! MKPinAnnotationView).pinTintColor = UIColor.orangeColor()
+                    (returnedAnnotationView as! MKPinAnnotationView).pinTintColor = UIColor.orange
                 #else
                     if #available(OSX 10.11, *) {
-                        (returnedAnnotationView as! MKPinAnnotationView).pinTintColor = NSColor.orangeColor()
+                        (returnedAnnotationView as! MKPinAnnotationView).pinTintColor = NSColor.orange
                     }
                 #endif
         }

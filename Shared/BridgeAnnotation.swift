@@ -39,13 +39,13 @@ class BridgeAnnotation: NSObject, MKAnnotation {
         return "Opened: May 27, 1937"
     }
     
-    class func createViewAnnotationForMapView(mapView: MKMapView, annotation: MKAnnotation) -> MKAnnotationView {
+    class func createViewAnnotationForMapView(_ mapView: MKMapView, annotation: MKAnnotation) -> MKAnnotationView {
         // try to dequeue an existing pin view first
         var returnedAnnotationView =
-        mapView.dequeueReusableAnnotationViewWithIdentifier(String(BridgeAnnotation.self))
+        mapView.dequeueReusableAnnotationView(withIdentifier: String(describing: BridgeAnnotation.self))
         if returnedAnnotationView == nil {
             returnedAnnotationView =
-                MKPinAnnotationView(annotation: annotation, reuseIdentifier: String(BridgeAnnotation.self))
+                MKPinAnnotationView(annotation: annotation, reuseIdentifier: String(describing: BridgeAnnotation.self))
             
             let pinAnnotationView = returnedAnnotationView as! MKPinAnnotationView
             if #available(OSX 10.11, *) {
