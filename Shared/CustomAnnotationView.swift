@@ -138,7 +138,7 @@ class CustomAnnotationView: MKAnnotationView {
             
             // add the annotation's image
             // the annotation image snaps to the width and height of this view
-            let annotationImage = NSImage(named: mapItem.imageName!)
+            let annotationImage = NSImage(named: NSImage.Name(rawValue: mapItem.imageName!))
             let annotationImageFrame = NSMakeRect(0, 0, annotationImage!.size.width, annotationImage!.size.height)
             let annotationImageView = NSImageView(frame: annotationImageFrame)
             annotationImageView.image = annotationImage

@@ -24,7 +24,7 @@ class MyWindowController: NSWindowController {
     //MARK: -
     
     override func awakeFromNib() {
-        mainVC = MapViewController(nibName: "MainView", bundle: nil)
+        mainVC = MapViewController(nibName: NSNib.Name(rawValue: "MainView"), bundle: nil)
         self.viewPlaceHolder.addSubview(self.mainVC.view)
         
         // since we are manually adding the view hierarchy that belongs to MapViewController,

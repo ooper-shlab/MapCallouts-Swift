@@ -13,12 +13,12 @@ You should not contact to Apple or SHLab(jp) about any faults caused by my trans
 
 ## Build Requirements
 
-Xcode 8.2.1
-iOS 10 SDK or later
-OS X 10.12 SDK or later (NOT tested)
+Xcode 9.3
+iOS 11 SDK or later
+OS X 10.13 SDK or later
 
 
 ## Runtime Requirements
 
 iOS 9.0 or later (as a universal app)
-OS X 10.9 or later (NOT tested)
+OS X 10.9 or later

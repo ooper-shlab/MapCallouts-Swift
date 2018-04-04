@@ -81,7 +81,7 @@ class MapViewController: NSViewController, MKMapViewDelegate {
     
     //MARK: - Action methods
     
-    @IBAction func annotationsAction(_: AnyObject) {
+    @IBAction func annotationsAction(_: Any) {
         
         let colIdx = self.annotationStates.selectedColumn
         let rowIdx = self.annotationStates.selectedRow
@@ -94,7 +94,7 @@ class MapViewController: NSViewController, MKMapViewDelegate {
             self.mapView.removeAnnotations(self.mapView.annotations)  // remove any annotations that exist
             
             let allCheckbox = self.annotationStates.cell(atRow: rowIdx, column: colIdx)
-            if allCheckbox?.state ?? 0 != 0 {
+            if allCheckbox?.state ?? .off != .off {
                 self.annotationStates.selectAll(self)
                 self.mapView.addAnnotations(self.mapAnnotations)
             } else {
@@ -104,9 +104,9 @@ class MapViewController: NSViewController, MKMapViewDelegate {
             // user chose an individual checkbox
             //
             // uncheck "All" checkbox
-            self.toggleAllCheckBox?.state = NSOffState
+            self.toggleAllCheckBox?.state = .off
             
-            if selectedCheckBox?.state ?? 0 != 0 {
+            if selectedCheckBox?.state ?? .off != .off {
                 self.mapView.addAnnotation(self.mapAnnotations[colIdx])
             } else {
                 self.mapView.removeAnnotation(self.mapAnnotations[colIdx])
@@ -162,14 +162,14 @@ class MapViewController: NSViewController, MKMapViewDelegate {
             let rightButton = NSButton(frame: NSMakeRect(0.0, 0.0, 100.0, 80.0))
             rightButton.title = "Info"
             rightButton.target = self
-            rightButton.action = #selector(MapViewController.bridgeInfoAction(_:))
+            rightButton.action = #selector(self.bridgeInfoAction(_:))
             rightButton.bezelStyle = .shadowlessSquare
             returnedAnnotationView!.rightCalloutAccessoryView = rightButton
         } else if annotation is WharfAnnotation { // for Fisherman's Wharf
             returnedAnnotationView = WharfAnnotation.createViewAnnotationForMapView(self.mapView, annotation: annotation)
             
             // provide an image view to use as the accessory view's detail view.
-            let image = NSImage(named: "wharf")!
+            let image = NSImage(named: NSImage.Name(rawValue: "wharf"))!
             let imageRect = NSMakeRect(0.0, 0.0, image.size.width, image.size.height)
             
             let imageView = NSImageView(frame: imageRect)
@@ -185,10 +185,10 @@ class MapViewController: NSViewController, MKMapViewDelegate {
             //
             returnedAnnotationView = SFAnnotation.createViewAnnotationForMapView(self.mapView, annotation: annotation)
             
-            returnedAnnotationView!.image = NSImage(named: "flag")
+            returnedAnnotationView!.image = NSImage(named: NSImage.Name(rawValue: "flag"))
             
             // provide the left image icon for the annotation
-            let sfImage = NSImage(named: "SFIcon")!
+            let sfImage = NSImage(named: NSImage.Name(rawValue: "SFIcon"))!
             let imageRect = NSMakeRect(0.0, 0.0, sfImage.size.width, sfImage.size.height)
             
             let sfIconView = NSImageView(frame: imageRect)
